@@ -1,0 +1,25 @@
+MP2: Flight Simulator
+
+Write a simple flight simulator using OpenGL to handle the display. The airplane should automatically move forward at a fixed speed. The user will control the bank and tilt of the airplane through the arrow keys. Pressing the left (right) arrow key will make the plane roll to its left (right). Pressing the up (down) arrow key will cause the airplane to pitch up (down).
+
+The key to getting this assignment done correctly is making sure the transformations are applied in the correct order. If you pitch the plane up or down, make sure the plane is moving in the direction the plane is facing, not in its previous direction. If you roll to the left and then pitch, make sure the plane turns to the left and not straight up.
+
+There are two ways to complete this assignment.
+
+You can try to implement everything through a sequence of OpenGL transformations, incrementally updating the existing airplane (camera) configuration held in OpenGL's matrices. Each frame would use glTranslate to move the plane forward, and small glRotate's to reorient the plane after an arrow keypress.
+Or you can keep track of your own airplane coordinate system and reset OpenGL's matrices each frame to display from the airplane coordinate system. You would likely need to implement your own matrix operations to apply them to your own coordinate system, but setting up OpenGL to give you the view defined by your coordinate system would be a simple gluLookat call.
+Students taking the class for 4 credits are required to implement a vertex shader for this project. Students taking the class for 3 credits might find it easier to implement as a vertex shader anyway, but are not required to do so.
+
+Feel free to fly around any model or scene you like, but to make your flight simulator more interesting, the file mountain.cpp attached to this page is a small GLUT program that generates some terrain that you can fly around. An alternative mountain-retained.cpp is also available that may be faster, by precomputing the terrain and storing it in a mesh element array. The specific terrain you get is a function of your computer's random number generator, so feel free to play around with the seed function until you get something you like.
+
+Happy Flying!
+
+Rubric:
+
+Interactive UI (10%)	Using either keyboard or mouse to control your plane interactively.
+Translation (20%)	The plane should move forward automatically.
+Roll (25%)	Apply correct rotation when your plane rolls left or right.
+Pitch (25%)	Apply correct rotation when your plane pitch up and down.
+Performance (15%)	Your simulator should run interactively and should be reasonably efficient.
+Documentation (5%)	Your code should be commented or self-explanatory. A readme.txt should explain the features and special instructions ( if any ) to run your code.
+Bonus (5%)	Show your creativeness in the scene, or any impressive features from your program.

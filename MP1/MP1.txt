@@ -1,0 +1,27 @@
+MP1: Dancing I
+Assigned: 3 Sep. 2013. Due: 3:30pm CST 17 Sep. 2013.
+Your first MP for the interactive graphics class is designed to make sure you can write and compile a graphics program. To demonstrate this, MP1 will create a 2-D animation of a dancing capital letter I, which include modeling, rendering and animation.
+
+Modeling
+
+The block letter "I" will need to be modeled with a 2-D mesh of triangles. The notes demonstrate a couple of models of the block letter "I" and you can code up one of these, or create your own model, possibly with more detail or a different font style. The model must not contain any "T" intersections, which means that there must be a vertex located at any junction in the mesh. In other words, you cannot make the block "I" out of three quads because the vertices of the middle quad would intersect edges of the top and bottom quad. You can also model a background, or just use a solid background color.
+
+Rendering
+
+You can color the letter "I" and the background any way you like, but a version of your I must be available with filled polygons. You can set different colors at different vertices to get color gradients which transition from one vertex color to another vertex color across the triangle face. A more tasteful way to do this is to fade the color from a darker shade at the bottom of the "I" to a lighter shade at the top of the "I" but feel free to experiment with other shading transitions. You should also outline the "I" using lines, and include a version that outlines each triangle or quad, so we can verify your model has no T-intersections. OpenGL contains procedures to set different line attributes that we don't really cover in class but you are welcome to use. Some 2-D styles also offset the line outline from the triangle fill and you can experiment with that as well if you like.
+
+Animation
+
+Your animation will need to be double buffered using glutSwapBuffers() or whatever command is available in your particular development system. This avoids flicker during the animation so the viewer doesn't see the screen cleared and redrawn for each frame. You may also need to check the system clock to make sure the animation runs at the same rate regardless of running on a slower or faster computer. Ideally your animation should run at 30 frames per second. You will need to write a program to change the location of vertices over time to animate your block letter "I" model. Such programs can be entirely procedural, such as the using various combination of sine waves to generate the dancing motion. Alternatively, the animation can be data driven using a table of pre-defined vertex positions for the motion. The motion can also be keyframed, so the vertices of the "I" are interpolated from one keyframe location to a second keyframe location. Linear interpolation is fine for this assignment, but other interpolations, such as an s-curve, will ease the figure in and out of each keyframe.
+
+Grading
+
+The assignment will be graded based on the following scale:
+
+50% Program compiles and runs properly.
+10% Code is well documented, with instructions on compiling and executing it.
+20% Model is a proper triangle mesh with no t-junctions.
+5% extra credit for using the least number of glVertex calls via triangle strips/fans.
+10% Rendering appearance.
+10% Animation quality, based on 30 frames per second target.
+This MP (as are the other MP's) is more than just an assignment for a grade to verify graphics programming proficiency. It is also an opportunity to impress me, your friends/family and your future employer or graduate school. These assignments are designed to provide the student with a portfolio of graphics programs and associated images and animations that can be used to demonstrate graphics expertise. Many students ask me to write letters of recommendation for jobs or grad school and I base these recommendations on their MP results. Use this MP as a chance to show off your graphics skills and make a strong impression.

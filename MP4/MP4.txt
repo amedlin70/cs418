@@ -1,0 +1,22 @@
+MP4: Subdivision Surfaces
+This assignment is to make a 3-D version of the 2-D letter I you made for MP1, and will combine extrusion, subdivision surfaces and cubic space curves. Specifically you will need to do the following:
+
+1. Create a 3-D extruded model of your "I" character, by creating a copy of the 2-D vertices, e.g. (x,y,0), and moving them, e.g. to (x,y,1). It would be easiest if you make sure all the faces in your mesh are quads, but it is not necessary for this to work. These 3-D vertices will define your "coarse" mesh.
+
+2. Subdivide your quads repeatedly into four smaller quads using Catmull-Clark subdivision rules. ?This subdivision will create a new vertex in the middle of each face as the average of the face's vertices, a new vertex near the middle of each edge as the average of the edge's endpoints and the new vertices in the middle of two faces that share the edge, and will move the existing vertices to a new location that is (n-2)/n times the old vertex location, plus 1/n times the average of the n adjacent new edge-vertex positions, plus 1/n times the average of the n adjacent new face-vertex positions. Some vertices (such as a corner of the "I") might have more or fewer adjacent edges and faces than the usual four.
+
+3. You should also have the camera position follow a cubic space curve path, with a lookat point that is either the center of the I model or one of its vertices. The path can either be a Bezier curve or a B-spline curve, and the latter will be less prone to 2nd derivative discontinuities that can show up as abrupt acceleration jolts of the camera.
+
+If you use an indexed face set as a mesh representation, then computing the positions of new face-vertices is easy and repositioning vertices can also be made efficient, but computing the new edge-vertices is hard. You can simplify the computation of edge vertices by either (A) implementing a half edge data structure, or (B) maintaining a list of neighboring faces for each face. For an example of (B), if a face is stored as "f 1 2 3 4" connecting vertices 1,2,3 and 4, then you might want to store its neighboring faces as a similarly ordered list, e.g. "nf 2 5 8 11" where nf stands for neighboring-face, and face #2 is the face that shares the edge with endpoint vertices #1 and #2, and likewise neighboring face #11 shares the edge with endpoint vertices #4 and #1.
+
+Point Breakdown
+
+40% subdivision (at least two levels)
+
+10% Cubic space curve camera path (Hermite, Bezier or B-Spline)
+
+10% Appearance
+
+20% Code that compiles and runs
+
+20% Documentation including comments and instructions for compiling & running

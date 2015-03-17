@@ -1,0 +1,32 @@
+MP3: Teapot Contest
+Load the Utah teapot from the attached triangle mesh file and render it using the following techniques:
+
+perspective,
+hidden surfaces (via the z-buffer),
+shading using the OpenGL built-in Phong surface reflection model,
+texture mapping, and
+environment mapping.
+Feel free to use any additional methods you want to try or show off. You should use this assignment as an opportunity to impress me, your colleagues and your future employer with your graphics programming capabilities.
+
+You must use the attached teapot model, which consists only of vertices and triangular faces. You will need to create per-vertex normals, which you can create by setting a per-face normal, and then setting the vertex normal to be the sum of its adjacent face normals, normalized (so the resulting vertex normal is unit length). If you load the vertices into a vertex position array, and the triangle faces into a face array whose elements are triples of vertex indices, then a loop through the faces computes the normal of each face. You can then create a normal accumulator entry for every vertex and initialize it to zero. Then loop through every face and add its normal to the normal accumulator of each of its three vertices. Then for each vertex, normalize (make unit length) its accumulated normal vector.
+
+The attached model does not come with any texture coordinates. For texture mapping, you can use cylindrical coordinates as texture coordinates. The bowl of the teapot is a surface of revolution about the y axis. Given a vertex's position (x,y,z), its cylindrical coordinates would be (r cos(theta), y, r sin(theta)) for a radius r, an angle theta, and an altitude y, where the angle theta is atan2(z,x). Then you can set texture coordinates (s,t) as s = (theta+PI)/2PI and t = y/ymax (since the base of the teapot is at y = 0). You can also use simple orthographic rectilinear texture coordinates s = x, t = y (or set OpenGL to texgen those coordinates automatically).
+
+
+
+For environment mapping you will use sphere (or cube) mapping texture generation modes in OpenGL. Several environment maps, in both sphere map and cube map formats, can be found at Paul Debevec's website|http://debevec.org/Probes/]. These are listed as "light probes" and several have been carefully assembled from multiple photographs and multiple exposures to yield "high dynamic range images" which are floating point pixel images capable of representing different areas of an image darker and brighter than is possible from the usual 24-bit image format. For this assignment, you can just use the 24-bit 256x256 resolution spheremap (mirror-ball) images used as the links by saving them as an image directly from the webpage.
+
+Notice in these examples you can find Paul croutching in the middle to take the picture, and the stand holding the mirror ball reflected in the bottom of the mirror ball. These were constructed from a single photograph while others were made from multiple photographs to remove the evidence of photography.
+
+Students enrolled for four credits (instead of three) will be required to implement a fragment shader to achieve effects different than what is supported by OpenGL. For example, bump mapping or a different reflection model than Phong (such as the Seeliger skin model in the notes).
+
+Grades will be assigned according to the following criteria :
+
+(10%) Load triangles properly
+(10%) Rendering uses perspective distortion/projection
+(10%) Hidden surfaces are removed
+(20%) The surface is realistically illuminates from one or more light sources
+(20%) A texture is mapped onto the surface
+(10%) The surface reflects an environment
+(10%) Documentation (Your code should be commented or self-explanatory. A readme.txt should explain the features and special instructions in detail ( if any ) to run your code.)
+(10%) The final picture is impressive
